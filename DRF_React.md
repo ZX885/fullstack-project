@@ -38,3 +38,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 What is Handling Cross-Origin Resource Sharing (CORS)?
 
 When we try to make an HTTP request from a different origin (e.g., from the React app to the Django API), we may run into a CORS error. To fix this, we need to add the Django Cors Headers package to our Django project. This package will add the necessary headers to allow cross-origin requests.
+
+npm install react-router-dom@latest
+npm install sass
+npm install react-bootstrap bootstrap
