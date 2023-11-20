@@ -1,0 +1,22 @@
+@import "../../assets/Styles/_settings";
+
+.main-navbar {
+    padding: - 100px;
+    .upper-nav{
+
+        background-color: $violet;
+        .left-nav>*,
+        .right-nav> *{
+            display: inline-block;
+            padding: 6px 12px;
+        }
+        .img{
+            margin: 0 15px;
+        }
+        a,span{
+            text-decoration: none;
+            color: $light;
+        }
+    }
+
+}

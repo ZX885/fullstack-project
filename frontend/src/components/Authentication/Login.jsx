@@ -1,7 +1,7 @@
 import Eye from "../../assets/icons/Eye.png";
 import { useState } from "react";
-import { axiosCall, accesssTokenIsValid, refreshTOKENLS } from '../conf/axios.js';
-import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from "../conf/common.js";
+import { axiosCall, accessTokenIsValid, refreshTokenLS } from '../../conf/axios.js'
+import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from "../../conf/common.js";
 
 function Login(props) {
     const [showPassword, setShowPassword] = useState(false);
@@ -15,15 +15,15 @@ function Login(props) {
             'username': username,
             'password': password
         }
-        const response = axiosCall('api/token/create', user, null, "POST")
+        const data = await axiosCall('api/token/create/', user, null, "POST")
         localStorage.setItem(ACCESS_TOKEN_KEY, data.access)
         localStorage.setItem(REFRESH_TOKEN_KEY, data.refresh)
     };
 
-    function fireSetUsername(e) {setUsername(e.target.value)}
-    function fireSetPassword(e) {setPassword(e.target.value)}
-    
+    function fireSetUsername(e) { setUsername(e.target.value) } 
+    function fireSetPassword(e) { setPassword(e.target.value) } 
 
+    
     return (
         <div>
             <form className="form-group" onSubmit={submit}>

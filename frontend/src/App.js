@@ -1,7 +1,7 @@
 import './index.scss'
 import "bootstrap/dist/css/bootstrap.min.css"
 import { BrowserRouter } from 'react-router-dom'
-import { context, initialState, globalReducer } from './components/conf/store.js';
+import { context, initialState, globalReducer } from './conf/store.js';
 import { useReducer } from 'react';
 import AllComponents from './components/AllComponents.jsx'
 

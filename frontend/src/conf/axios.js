@@ -1,27 +1,29 @@
 import axios from 'axios';
 import { BASE_URL } from './store.js';
-import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from './common.js';
+import { REFRESH_TOKEN_KEY, ACCESS_TOKEN_KEY } from './common.js';
 
+// "api/token/refresh/"
 
-async function accesssTokenIsValid() {
+async function accessTokenIsValid() {
     try {
         const accessToken = localStorage.getItem(ACCESS_TOKEN_KEY);
         let response = await axiosCall(
-            "api/token/verify",
-            {token: accessToken},
-            null,'POST'
+            "api/token/verify/",
+            { token: accessToken },
+            null, "POST"
         )
         console.log(response)
         return true
-    }catch(e){
-        console.log("Invalid access token", e)
-        return False
+    } catch (e) {
+        console.error("Invalid access token detected: ", e)
+        return false
     }
 }
-
-async function refreshTOKENLS(){
-    const refreshTOKENLS = localStorage.getItem(REFRESH_TOKEN_KEY)    
+async function refreshTokenLS() {
+    const refreshToken = localStorage.getItem(REFRESH_TOKEN_KEY);
 }
+
+
 async function axiosCall(path, data = null, headersData = null, method = "GET") {
     try {
         const url = BASE_URL + path
@@ -39,10 +41,8 @@ async function axiosCall(path, data = null, headersData = null, method = "GET") 
         console.error(error);
     }
 }
-
-
 export {
     axiosCall,
-    accesssTokenIsValid,
-    refreshTOKENLS
+    accessTokenIsValid,
+    refreshTokenLS
 }
