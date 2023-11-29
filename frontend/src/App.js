@@ -4,8 +4,8 @@ import { BrowserRouter } from 'react-router-dom'
 import { context, initialState, globalReducer } from './conf/store.js';
 import { useReducer } from 'react';
 import AllComponents from './components/AllComponents.jsx'
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactTostify/css'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 function App() {
   const [state, dispatch] = useReducer(globalReducer, initialState)
