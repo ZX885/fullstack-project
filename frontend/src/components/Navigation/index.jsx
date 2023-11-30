@@ -9,7 +9,8 @@ import cardVector from '../../assets/icons/card-vector.png'
 import searchVector from '../../assets/icons/search-vector.png'
 import Footer from './Footer'
 
-import { isLoggedIn } from '../../conf/common'
+import { isLoggedIn } from "../../conf/common"
+
 
 export default function Navigation() {
     return (
@@ -20,11 +21,11 @@ export default function Navigation() {
                         <div className="upper-left-nav">
                             <a href="mailto:alisherxujanov163@gmail.com">
                                 <img src={emailVector} width="15" height="15" alt="" />
-                                zarruhzakirov@gmail.com
+                                alisherxujanov163@gmail.com
                             </a>
                             <span>
                                 <img src={phoneVector} width="15" height="15" alt="" />
-                                (+99899) 2609264
+                                (+99833) 4747477
                             </span>
                         </div>
                         <div className="upper-right-nav">
@@ -40,27 +41,20 @@ export default function Navigation() {
                                     <img src={bottomVector} alt="Vector" width={10} height={5} />
                                 </Link>
                             </span>
-                            <span>
-                            {
-                                    isLoggedIn() 
-                                        ? 
-                                            ( <Link to={"/auth"}>
-                                                Login
-                                                <img src={profileVector} alt="Vector" width={15} height={15} />
-                                            </Link> )
-                                        :
-                                            ( <Link to={"/#profile"}>
+                            <span className='nav-link'>
+                                {
+                                    isLoggedIn()
+                                        ?
+                                            (<Link to={"/#profile"}>
                                                 Profile
                                                 <img src={profileVector} alt="Vector" width={15} height={15} />
-                                            </Link> )
-                            }
-
-                            </span>
-                            <span className='nav-link'>
-                                <Link to={"/auth"}>
-                                    Login
-                                    <img src={profileVector} alt="Vector" width={15} height={15} />
-                                </Link>
+                                            </Link>)
+                                        :
+                                            (<Link to={"/auth"}>
+                                                Login
+                                                <img src={profileVector} alt="Vector" width={15} height={15} />
+                                            </Link>)
+                                }
                             </span>
                             <span className='nav-link'>
                                 <Link to={"/#"}>

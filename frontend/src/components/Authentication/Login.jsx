@@ -2,7 +2,7 @@ import Eye from "../../assets/icons/Eye.png";
 import { useState } from "react";
 import { axiosCall, accessTokenIsValid, refreshTokenLS } from '../../conf/axios.js'
 import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from "../../conf/common.js";
-import { toast } from "react-toastify";
+import { toast } from 'react-toastify'
 
 function Login(props) {
     const [showPassword, setShowPassword] = useState(false);
@@ -13,61 +13,62 @@ function Login(props) {
     // Create the submit method.
     const submit = async e => {
         e.preventDefault();
-        if (username.length ===0  || password.length ===0){
+        if (username.length === 0   ||   password.length === 0) {
             toast.warn("All fields are required.", {toastId: 2})
             return
-        }else if(error.usernameErr || error.passwordErr){
-            toast.warn("Please fix the errors.", {toastId:2})
+        } else if (error.usernameErr || error.passwordErr) {
+            toast.warn("Please fix the errors.", {toastId: 3})
             return
         }
-        
         const user = {
             'username': username,
             'password': password
         }
         const data = await axiosCall('api/token/create/', user, null, "POST")
-        if (data.response?.status == 401){
-            toast.error('Incorrect credentials', {toastId: '1'})
+        if (data.response?.status === 401) {
+            toast.error("Incorrect credentials", {toastId: 1})
         }
         localStorage.clear()
         localStorage.setItem(ACCESS_TOKEN_KEY, data.access)
         localStorage.setItem(REFRESH_TOKEN_KEY, data.refresh)
-        toast.success("", {toastId:4})
+        toast.success("Successfully logged in", {toastId: 4})
         props.navigate('/')
     };
 
-    const pattern = /^[a-zA-Z0-9]+$/;
+    const PATTERN = /^[a-zA-Z0-9]+$/;
     function fireSetUsername(e) {
         const val = e.target.value
-        if (val.length !==0){
-            if (!pattern.test(val)){
-                setError({...error, usernameErr: 'Никнейм может содержать только буквы и цифры'})
-            } else{
-                setError({...error, usernameErr: ''})
+        if (val.length !== 0) {
+            if (!PATTERN.test(val)) {
+                setError({ ...error, usernameErr: 'Никнейм может содержать только латинские буквы и цифры' })
+            } else {
+                setError({ ...error, usernameErr: '' })
             }
-        }else{
-            setError({...error, usernameErr: ''})
+        } else {
+            setError({ ...error, usernameErr: '' })
         }
-        setUsername(val)
+        setUsername(val) 
     } 
     function fireSetPassword(e) {
         const val = e.target.value
-        if (val.length !==0){
-            if (!pattern.test(val)){
-                setError({...error, passwordErr: 'Пароль может содержать только буквы и цифры'})
-            } else{
-                setError({...error, passwordErr: 'Пароль может содержать только буквы и цифры'})
+
+        if (val.length !== 0) {
+            if (!PATTERN.test(val)) {
+                setError({ ...error, passwordErr: 'Пароль может содержать только латинские буквы и цифры' })
+            } else {
+                setError({ ...error, passwordErr: '' })
             }
-        }else{
-            setError({...error, passwordErr: ''})
+        } else {
+            setError({ ...error, passwordErr: '' })
         }
+
         setPassword(val) 
     } 
 
     
     return (
         <div>
-            <form className="form-group" onSubmit={submit}>
+            <form className="auth-form" onSubmit={submit}>
                 <div>
                     <input
                         type="text"
@@ -76,7 +77,7 @@ function Login(props) {
                         placeholder="Никнейм или электронная почта"
                     />
                     <p className="error">
-                        <small>{error.usernameErr}</small>
+                        {error.usernameErr}
                     </p>
                 </div>
                 <div>
@@ -89,12 +90,12 @@ function Login(props) {
                     />
                     <img src={Eye} onClick={() => { setShowPassword(!showPassword) }} alt="" />
                     <p className="error">
-                        <small>{error.passwordErr}</small>
+                        {error.passwordErr}
                     </p>
                 </div>
-                <p className='помошник'>
+                <p className='forget-password'>
                     <span>Забыли пароль?</span>
-                    <a className='восстановить' href='#'>Восстановить</a>
+                    <a className='Recover' href='#'>Восстановить</a>
                 </p>
                 <button className='войти'>Войти</button>
             </form>
