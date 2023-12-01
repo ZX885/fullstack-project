@@ -42,28 +42,57 @@ function Register(props) {
 
         inputName == "password" ? setPassword(val) :setPassword2(val)
     } 
+    function fireSetEmail(e){
+        const emailPattern = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/
+        const val = e.target.value
+        // if (val.length !== 0) {
+        //     if (!emailPattern.test(val)) {
+        //         setError({ ...error, emailErr: 'Некорректный email' })
+        //     } else {
+        //         setError({ ...error, emailErr: '' })
+        //     }
+        // } else {
+        //     setError({ ...error, emailErr: '' })
+        // }
+        setEmail(val)
+
+    }
 
 
     return (
         <div>
             <form className="auth-form">
                 <div>
-                    <input type="text" id="register-name-input" placeholder="Введите никнейм" />
-                    <input type="text" id="register-email-input" placeholder="Электронная почта" pattern='^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$' />
+                    <input type="text" id="register-name-input" placeholder="Введите никнейм" onChange={fireSetUsername}/>
+                    <p className="error">
+                        {error.passwordErr}
+                    </p>
+                    <input type="email" id="register-email-input" placeholder="Электронная почта" onChange={fireSetEmail} />
+                    <p>
+                        {error.emailErr}
+                    </p>
                 </div>
                 <div>
                     <input id="register-pass-input" type={showPassword ? "text" : "password"} 
                     className="pass-input" 
                     placeholder="Придумайте пароль" 
                     name="password"
+                    onChange={fireSetPassword}
                      />
+                     <p className="error">
+                        {error.passwordErr}
+                     </p>
                     <img src={Eye} onClick={() => { setShowPassword(!showPassword) }} alt="" />
                 </div>
                 <div>
                     <input id="pass2-input" type="password"  
                     placeholder="Повторите пароль" 
                     name="password2"
+                    onChange={fireSetPassword}
                      />
+                    <p className="error">
+                        {error.password2Err}
+                    </p>
                 </div>
                 <button className='войти'>Создать</button>
             </form>
