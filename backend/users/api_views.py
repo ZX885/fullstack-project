@@ -14,6 +14,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 @api_view(['POST'])
 def register(request):
     username = request.data.get('username')
+    email = request.data.get('email')
     password = request.data.get('password')
     password2 = request.data.get('password2')
     if password != password2:
@@ -22,7 +23,9 @@ def register(request):
         return Response({'error': 'Please provide both username and password'}, status=400)
     if User.objects.filter(username=username).exists():
         return Response({'error': 'Username already taken'}, status=400)
-    user = User.objects.create_user(username=username, password=password)
+    if not email:
+        return Response({'error': 'Email is required'}, status=400)
+    user = User.objects.create_user(username=username, password=password, email=email)
     Token.objects.create(user=user)
     return Response({'token': user.auth_token.key}, status=201)
 
@@ -37,3 +40,10 @@ def logout(request):
         return Response(status=status.HTTP_205_RESET_CONTENT)
     except Exception as e:
         return Response(status=status.HTTP_400_BAD_REQUEST)
+
+
+# {
+#     "username":"test",
+#     "password":"test",
+#     "password2":"test2"
+# }
