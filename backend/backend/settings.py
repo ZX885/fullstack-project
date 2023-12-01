@@ -1,3 +1,4 @@
+
 import os
 from pathlib import Path
 from datetime import timedelta
@@ -30,7 +31,7 @@ INSTALLED_APPS = [
 
     'furniture',
     'rest_framework',
-    # 'corsheaders',
+    'corsheaders',
     'rest_framework_simplejwt',
 ]
 

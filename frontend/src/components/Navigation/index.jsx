@@ -21,11 +21,11 @@ export default function Navigation() {
                         <div className="upper-left-nav">
                             <a href="mailto:alisherxujanov163@gmail.com">
                                 <img src={emailVector} width="15" height="15" alt="" />
-                                alisherxujanov163@gmail.com
+                                zarruhzokirov@gmail.com
                             </a>
                             <span>
                                 <img src={phoneVector} width="15" height="15" alt="" />
-                                (+99833) 4747477
+                                (+99899) 2609264
                             </span>
                         </div>
                         <div className="upper-right-nav">
@@ -45,7 +45,7 @@ export default function Navigation() {
                                 {
                                     isLoggedIn()
                                         ?
-                                            (<Link to={"/#profile"}>
+                                            (<Link to={"/profile"}>
                                                 Profile
                                                 <img src={profileVector} alt="Vector" width={15} height={15} />
                                             </Link>)
