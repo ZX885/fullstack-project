@@ -30,20 +30,17 @@ def register(request):
     return Response({'token': user.auth_token.key}, status=201)
 
 
-@api_view(['POST'])
-def logout(request):
-    try:
-        refresh_token = request.data["refresh_token"]
-        token = RefreshToken(refresh_token)
-        token.blacklist()
-        request.user.auth_token.delete()
-        return Response(status=status.HTTP_205_RESET_CONTENT)
-    except Exception as e:
-        return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
 # {
 #     "username":"test",
+#     "email":"test@gmail.com",
 #     "password":"test",
 #     "password2":"test2"
+# }
+
+
+# {
+#     "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTcwMTc4MjUwNCwiaWF0IjoxNzAxNjk2MTA0LCJqdGkiOiJmNTg4MzVhOWE4MWY0ZjI3YmE1MjAwZTA4MGI4NmI0NyIsInVzZXJfaWQiOjF9.NIHfjygP3Pgv03e4Rq4mWdCWtEQbMHglt-XyyA8c-PE",
+#     "access": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAxNzAzMzA0LCJpYXQiOjE3MDE2OTYxMDQsImp0aSI6IjBmMzM5MDIzM2YzYzRiZjJiYzY4MTBiYzcwYjgwYWQ4IiwidXNlcl9pZCI6MX0.I-KLEMTwSOaIo214r-zs0dE8PaNL_jiwDpzq_oei0Ck"
 # }
