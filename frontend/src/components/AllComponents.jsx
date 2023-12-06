@@ -1,8 +1,8 @@
 import { Routes, Route, useLocation } from 'react-router-dom'
 import NoPage from './NoPage'
-import Auth from '../components/Authentication'
-import Navigation from '../components/Navigation'
-import Home from '../components/Home'
+import Auth from './Authentication'
+import Navigation from './Navigation'
+import Home from './Home'
 import AuthControl from './AuthControl'
 import Profile from './Profile'
 

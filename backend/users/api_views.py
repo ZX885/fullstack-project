@@ -24,23 +24,7 @@ def register(request):
     if User.objects.filter(username=username).exists():
         return Response({'error': 'Username already taken'}, status=400)
     if not email:
-        return Response({'error': 'Email is required'}, status=400)
+        return Response({'error': 'Please provide email'}, status=400)
     user = User.objects.create_user(username=username, password=password, email=email)
     Token.objects.create(user=user)
-    return Response({'token': user.auth_token.key}, status=201)
-
-
-
-
-# {
-#     "username":"test",
-#     "email":"test@gmail.com",
-#     "password":"test",
-#     "password2":"test2"
-# }
-
-
-# {
-#     "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTcwMTc4MjUwNCwiaWF0IjoxNzAxNjk2MTA0LCJqdGkiOiJmNTg4MzVhOWE4MWY0ZjI3YmE1MjAwZTA4MGI4NmI0NyIsInVzZXJfaWQiOjF9.NIHfjygP3Pgv03e4Rq4mWdCWtEQbMHglt-XyyA8c-PE",
-#     "access": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAxNzAzMzA0LCJpYXQiOjE3MDE2OTYxMDQsImp0aSI6IjBmMzM5MDIzM2YzYzRiZjJiYzY4MTBiYzcwYjgwYWQ4IiwidXNlcl9pZCI6MX0.I-KLEMTwSOaIo214r-zs0dE8PaNL_jiwDpzq_oei0Ck"
-# }
+    return Response({'success': True}, status=201)
