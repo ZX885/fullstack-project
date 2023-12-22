@@ -27,13 +27,14 @@ function Products() {
 
             <div className="items">
                 {
-                    furnitures.length > 0 && furnitures.map((furniture, index) => {
+                    furnitures && furnitures.map((furniture, index) => {
                         return (
                             <Item 
                                 key={index}
                                 price={furniture.price}
                                 image={furniture.image}
                                 name={furniture.name}
+                                itemID={furniture.id}
                             />
                         )
                     })

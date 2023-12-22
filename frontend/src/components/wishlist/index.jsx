@@ -3,7 +3,7 @@ import { useEffect, useContext } from 'react'
 import { axiosCall } from '../../conf/axios'
 import { BASE_URL, context } from "../../conf/store"
 import { Link } from "react-router-dom"
-
+import { toast } from "react-toastify"
 
 function Wishlist(props) {
     const state = useContext(context)
@@ -20,11 +20,17 @@ function Wishlist(props) {
         })
         console.log(state)
     }
+    
+    async function delItem(e, itemID){
+        e.preventDefault()
+        const data = {furniture_id:props.itemID, delete_item:true}
+        const response = await axiosCall('api/furniture/wishlist')
 
+
+    }
     useEffect(() => {
         getWishlist()
     }, [])
-
 
     return (
         <div className="wishlist-wrapper">
@@ -34,8 +40,8 @@ function Wishlist(props) {
                     state.wishlist.length > 0 ?
                         state.wishlist.map((item, index) => {
                             return (
-                                <Link to={`/furniture-details/${item.id}`}>
-                                    <div key={index}
+                                <Link key={index} to={`/furniture-details/${item.id}`}>
+                                    <div
                                         className="wishlist-item-wrapper"
                                     >
                                         <img
@@ -44,9 +50,15 @@ function Wishlist(props) {
                                             alt={item.name}
                                             width={"100%"}
                                         />
-                                        <h2>Name: {item.name}</h2>
-                                        <p>Description: {item.description}</p>
-                                        <p>Category: {item.category}</p>
+                                        <div>
+                                            <h3>Name: {item.name}</h3>
+                                            <p>Description: {item.description}</p>
+                                            <p>Category: {item.category}</p>
+                                        </div>
+
+                                        <span onClick={delItem(itemID)} className="del-item">
+                                            &times;
+                                        </span>
                                     </div>
                                 </Link>
                             )
