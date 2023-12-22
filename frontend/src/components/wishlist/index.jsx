@@ -56,7 +56,7 @@ function Wishlist(props) {
                                             <p>Category: {item.category}</p>
                                         </div>
 
-                                        <span onClick={delItem(itemID)} className="del-item">
+                                        <span onClick={delItem} className="del-item">
                                             &times;
                                         </span>
                                     </div>
