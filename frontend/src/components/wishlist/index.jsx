@@ -21,12 +21,14 @@ function Wishlist(props) {
         console.log(state)
     }
     
-    async function delItem(e, itemID){
-        e.preventDefault()
-        const data = {furniture_id:props.itemID, delete_item:true}
-        const response = await axiosCall('api/furniture/wishlist')
-
-
+    async function delItem(itemID) {
+        const data = { furniture_id: itemID, delete_item: true }
+        const response = await axiosCall(`api/furniture/wishlist/`, data, 
+        {
+            "Authorization": "Bearer " + localStorage.getItem("access_token"),
+        }, "POST")
+        console.log(response)
+        toast.success("Deleted from wishlist", {toastId: 15})
     }
     useEffect(() => {
         getWishlist()
