@@ -1,13 +1,13 @@
 import './style.scss'
 import { useState, useEffect } from 'react'
-import { getFurniture } from '../../conf/common'
-import Item from './item'
+import { getFurnitures } from '../../conf/common'
+import Item from './Item'
 
 function Products() {
     const [furnitures, setFurnitures] = useState([])
 
     useEffect(() => {
-        getFurniture().then((data) => {
+        getFurnitures().then((data) => {
             setFurnitures(data)
         })
     }, [])
