@@ -1,7 +1,7 @@
 import './style.scss'
 import { useState, useEffect } from 'react'
 import { getFurnitures } from '../../conf/common'
-import Item from './Item.jsx'
+import Item from './item.jsx'
 
 function Products() {
     const [furnitures, setFurnitures] = useState([])
@@ -27,7 +27,7 @@ function Products() {
 
             <div className="items">
                 {
-                    furnitures && furnitures.map((furniture, index) => {
+                    furnitures.length && furnitures.map((furniture, index) => {
                         return (
                             <Item 
                                 key={index}
