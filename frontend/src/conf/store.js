@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-const BASE_URL = "http://127.0.0.1:8000/"
+const BASE_URL = "https://zarrux.pythonanywhere.com/"
 
 const context = createContext()
 const initialState = {
