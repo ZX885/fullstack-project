@@ -27,7 +27,7 @@ function Products() {
 
             <div className="items">
                 {
-                    furnitures.length && furnitures.map((furniture, index) => {
+                    furnitures && furnitures.map((furniture, index) => {
                         return (
                             <Item 
                                 key={index}
